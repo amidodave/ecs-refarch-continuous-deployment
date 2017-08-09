@@ -41,16 +41,16 @@ Resources:
       DesiredCount: !Ref DesiredCount
       TaskDefinition: !Ref TaskDefinition
       LoadBalancers:
-        - ContainerName: simple-app
+        - ContainerName: aldis-ui
           ContainerPort: 80
           TargetGroupArn: !Ref TargetGroup
 
   TaskDefinition:
     Type: AWS::ECS::TaskDefinition
     Properties:
-      Family: !Sub ${AWS::StackName}-simple-app
+      Family: !Sub ${AWS::StackName}-aldis-ui
       ContainerDefinitions:
-        - Name: simple-app
+        - Name: aldis-ui
           Image: !Sub ${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/${Repository}:${Tag}
           EntryPoint:
             - /usr/sbin/apache2
@@ -74,7 +74,7 @@ Resources:
           Essential: false
           Memory: 128
           VolumesFrom:
-            - SourceContainer: simple-app
+            - SourceContainer: aldis-ui
           Command:
             - /bin/sh -c "while true; do /bin/date > /var/www/my-vol/date; sleep 1; done"
       Volumes:

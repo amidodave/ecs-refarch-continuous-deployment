@@ -90,9 +90,9 @@ Resources:
 
 Outputs:
   ServiceUrl:
-    Description: The sample service that is being continuously deployed.
+    Description: The service that is being deployed.
     Value: !GetAtt LoadBalancer.Outputs.ServiceUrl
 
   PipelineUrl:
-    Description: The continuous deployment pipeline in the AWS Management Console.
+    Description: The deployment pipeline in the AWS Management Console.
     Value: !GetAtt DeploymentPipeline.Outputs.PipelineUrl

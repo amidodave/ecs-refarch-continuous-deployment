@@ -59,23 +59,12 @@ Resources:
           Essential: true
           Memory: 128
           MountPoints:
-            - SourceVolume: my-vol
-              ContainerPath: /var/www/my-vol
+            - SourceVolume: aldis-ui-vol
+              ContainerPath: /var/www/aldis-ui-vol
           PortMappings:
             - ContainerPort: 80
           Environment:
             - Name: Tag
               Value: !Ref Tag
-        - Name: busybox
-          Image: busybox
-          EntryPoint:
-            - sh
-            - -c
-          Essential: false
-          Memory: 128
-          VolumesFrom:
-            - SourceContainer: aldis-ui
-          Command:
-            - /bin/sh -c "while true; do /bin/date > /var/www/my-vol/date; sleep 1; done"
       Volumes:
-        - Name: my-vol
+        - Name: aldis-ui-vol
